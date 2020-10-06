@@ -586,6 +586,14 @@ input::placeholder {
   }
 
 
+  .symbol--show{
+      height: 24px;
+      fill: var(--global-color-neutral-x-dark);
+      position: relative;
+      left: 90%;
+      bottom:35px;
+    
+  }
 /*
     Component: Card
     ---
