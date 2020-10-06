@@ -41,8 +41,10 @@
 
     /* global page settings */
     --global-html-color: var(--global-color-neutral-xxxx-dark);
-    --global-html-backgroundColor: var(--global-color-neutral-xxxx-light);
+    --global-html-backgroundColor: var(--global-color-neutral-xxxx-dark);
     --global-selection-backgroundColor: var(--global-color-alpha);    
+
+    
 
     /* borders */
     --global-borderRadius: 3px;
@@ -71,6 +73,10 @@
     --global-input-focus-borderColor: var(--global-color-alpha);
     --global-input-focus-boxShadowColor: var(--global-color-alpha-x-transparent);
     --global-input-focus-boxShadow: 0 0 0 3px var(--global-input-focus-boxShadowColor);
+
+    /*dark theme*/
+    --global-page-color: var(--gllobal-color-neutral-xxxx-dark);
+    --global-page-backgroundColor: var(--global-color-neutral-xxxx-dark);
 }
 
 /*------------------------------------*\
@@ -82,10 +88,16 @@
     ---
     Global page styles + universal box-sizing:
 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --global-page-color: red;
+        --global-page-backgroundColor: var(--color-neutral-xxxx-dark);
+    }
+}
 
 html {
-    background-color: var(--global-html-backgroundColor);
-    color: var(--global-html-color);
+    background-color: var(--global-page-backgroundColor);
+    color: var(--global-page-color);
     font-size: 16px;
     line-height: 1.5;
     font-family: "Inter Web", Helvetica, arial, sans-serif;
@@ -541,7 +553,7 @@ input::placeholder {
 .c-logo__symbol {
     height: 100%;
 }
-
+/*
 .c-logo__path--1 {
     fill: var(--logo__path--1--Fill);
 }
@@ -553,6 +565,26 @@ input::placeholder {
 .c-logo__path--3 {
     fill: var(--logo__path--3--Fill);
 }
+*/
+.c-logo__path--1 {
+    fill: var(--logo__path--1--fill, var(--global-color-neutral-xxxx-light));
+  }
+
+  .c-logo__path--2 {
+    fill: var(--logo__path--2--fill, var(--global-color-neutral-xxxx-light));
+  }
+  
+  .c-logo__path--3 {
+    fill: var(--logo__path--3--fill, var(--global-color-neutral-xxxx-light));
+
+  }@media (prefers-color-scheme: dark) {
+    .c-logo {
+      --logo__path--1--fill: white;
+      --logo__path--2--fill: var(--logo__path--1--fill);
+      --logo__path--3--fill: var(--logo__path--1--fill);
+    }
+  }
+
 
 /*
     Component: Card
@@ -569,6 +601,7 @@ input::placeholder {
     border-radius: var(--card-borderRadius);
     box-shadow: 0 0 0 1px rgba(0,0,0, 0.05), 0 2px 4px rgba(0,0,0,.075);
     overflow: hidden;
+
 }
 
 /* Add padding to child for more flexibility */
@@ -576,6 +609,7 @@ input::placeholder {
 .c-card__footer {
     padding: var(--global-whitespace) var(--global-whitespace) 0;
     overflow: auto; /* Fix margin collapse */
+    background-color:var(  --global-color-neutral-xxx-dark) ;
 }
 
 .c-card__footer {   
@@ -588,6 +622,7 @@ input::placeholder {
     font-size: 18px;
     line-height: var(--global-whitespace);
     font-weight: 600;
+    color: var(--global-input-backgroundColor);
 }
 
 @media (min-width: 27em) {
@@ -622,10 +657,10 @@ input::placeholder {
     -moz-appearance: none;
     appearance: none;
     width: 100%;
-    border: 1px solid var(--global-input-borderColor);
+    border: 1px solid var(--global-page-backgroundColor);
     border-radius: var(--global-borderRadius);
-    background-color: var(--global-input-backgroundColor);
-    color: var(--global-input-color);
+    background-color: var(--global-page-backgroundColor);
+    color: var( --global-placeholder-color);
     font-family: inherit;
     font-size: 16px;
     line-height: calc(var(--global-baseline) * 3);
@@ -671,7 +706,8 @@ more padding on the right to avoid overlap
     padding-bottom: var(--global-whitespace-sm);
     font-size: 14px;
     line-height: 16px;
-    color: var(--label-color);
+   
+    color: var(--global-color-neutral);
 }
 
 .c-label--option {
